@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "zingha_contact": {
+      "type": "zingha-contact",
+      "settings": {
+        "label": "Contacto",
+        "heading": "Hablemos.",
+        "description": "Estamos aquí para responder tus preguntas sobre productos, pedidos o cualquier otra cosa.",
+        "hours": "Lun–Vie, 9am–6pm (Ciudad de México)",
+        "submit_text": "Enviar mensaje"
+      }
+    }
+  },
+  "order": ["zingha_contact"]
+}

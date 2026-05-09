@@ -1,0 +1,232 @@
+{% comment %} Z!ngha — About Us page {% endcomment %}
+
+{%- comment -%} — Hero — {%- endcomment -%}
+<section class="bg-z-charcoal overflow-hidden" aria-labelledby="about-hero-heading">
+  <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[600px] lg:min-h-[700px]">
+
+    <div class="relative overflow-hidden bg-z-beige/10" data-fm="fade-in">
+      {%- if section.settings.hero_image != blank -%}
+        {{ section.settings.hero_image | image_url: width: 1200 | image_tag:
+            class: 'w-full h-full object-cover object-center absolute inset-0',
+            loading: 'eager',
+            alt: section.settings.hero_image.alt | default: 'Z!ngha — Nuestra historia',
+            widths: '600,900,1200',
+            sizes: '(min-width:1024px) 50vw, 100vw' }}
+        <div class="absolute inset-0 bg-gradient-to-t from-z-charcoal/40 to-transparent"></div>
+      {%- else -%}
+        <div class="absolute inset-0 flex items-center justify-center text-z-sand/10">
+          <svg class="w-24 h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="0.6" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Z"/>
+          </svg>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="flex items-center px-8 py-20 lg:px-16 lg:py-28 xl:px-24" data-fm="fade-right">
+      <div class="max-w-md">
+        <p class="z-label-sage mb-5">{{ section.settings.label | default: 'Sobre Nosotros' }}</p>
+        <span class="z-divider mb-8"></span>
+        <h1 id="about-hero-heading" class="font-serif text-4xl lg:text-5xl font-light text-z-cream leading-[1.1] mb-6 text-balance">
+          {{ section.settings.hero_heading | default: 'Nacimos de la búsqueda de calma.' }}
+        </h1>
+        <p class="font-sans text-sm font-light text-z-sand/70 leading-relaxed">
+          {{ section.settings.hero_description | default: 'Z!ngha es el resultado de años investigando cómo la aromaterapia clínica puede transformar momentos cotidianos en rituales de bienestar intencional.' }}
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{%- comment -%} — Mission statement — {%- endcomment -%}
+<section class="bg-z-cream py-24 lg:py-32">
+  <div class="z-container max-w-4xl mx-auto text-center" data-fm="fade-up">
+    <p class="z-label mb-8">{{ section.settings.mission_label | default: 'Nuestra Misión' }}</p>
+    <blockquote class="font-serif text-3xl lg:text-4xl xl:text-5xl font-light text-z-charcoal leading-[1.2] text-balance italic">
+      "{{ section.settings.mission_statement | default: 'Hacer accesible el bienestar real — un ritual olfativo a la vez.' }}"
+    </blockquote>
+  </div>
+</section>
+
+{%- comment -%} — Values — {%- endcomment -%}
+<section class="bg-z-beige py-20 lg:py-28 border-t border-z-sand/50">
+  <div class="z-container">
+    <div class="text-center mb-16" data-fm="fade-up">
+      <p class="z-label mb-4">{{ section.settings.values_label | default: 'Nuestros Principios' }}</p>
+      <h2 class="heading-lg text-balance">{{ section.settings.values_heading | default: 'Lo que guía cada decisión' }}</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16" data-fm="stagger">
+
+      <div class="text-center" data-fm-child>
+        <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-z-sage/10 mb-6 text-z-sage" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" class="w-7 h-7">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
+          </svg>
+        </div>
+        <h3 class="font-serif text-2xl font-normal text-z-charcoal mb-3">{{ section.settings.value_1_title | default: 'Pureza' }}</h3>
+        <p class="body-sm max-w-xs mx-auto">{{ section.settings.value_1_body | default: 'Solo aceites esenciales con trazabilidad de origen. Cero sintéticos, cero conservadores, cero compromisos.' }}</p>
+      </div>
+
+      <div class="text-center" data-fm-child>
+        <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-z-sage/10 mb-6 text-z-sage" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" class="w-7 h-7">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/>
+          </svg>
+        </div>
+        <h3 class="font-serif text-2xl font-normal text-z-charcoal mb-3">{{ section.settings.value_2_title | default: 'Precisión' }}</h3>
+        <p class="body-sm max-w-xs mx-auto">{{ section.settings.value_2_body | default: 'Cada fórmula es el resultado de investigación en aromaterapia clínica aplicada al sistema nervioso autónomo.' }}</p>
+      </div>
+
+      <div class="text-center" data-fm-child>
+        <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-z-sage/10 mb-6 text-z-sage" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" class="w-7 h-7">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z"/>
+          </svg>
+        </div>
+        <h3 class="font-serif text-2xl font-normal text-z-charcoal mb-3">{{ section.settings.value_3_title | default: 'Presencia' }}</h3>
+        <p class="body-sm max-w-xs mx-auto">{{ section.settings.value_3_body | default: 'Diseñados para integrarse silenciosamente en tu rutina — sin rituales complicados, solo resultados.' }}</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{%- comment -%} — Founder / Story — {%- endcomment -%}
+<section class="bg-z-cream py-20 lg:py-28">
+  <div class="z-container">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+      <div data-fm="fade-left">
+        {%- if section.settings.founder_image != blank -%}
+          <div class="relative overflow-hidden rounded-card aspect-4/5">
+            {{ section.settings.founder_image | image_url: width: 800 | image_tag:
+                class: 'w-full h-full object-cover object-center',
+                loading: 'lazy',
+                alt: section.settings.founder_image.alt | default: 'Fundador Z!ngha',
+                widths: '400,800',
+                sizes: '(min-width:1024px) 45vw, 90vw' }}
+          </div>
+        {%- else -%}
+          <div class="relative rounded-card aspect-4/5 bg-z-beige flex items-center justify-center">
+            <span class="font-serif text-9xl font-light text-z-sand/30" aria-hidden="true">Z</span>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div data-fm="fade-right">
+        <p class="z-label mb-5">{{ section.settings.founder_label | default: 'Los Fundadores' }}</p>
+        <span class="z-divider mb-8"></span>
+        <h2 class="font-serif text-3xl lg:text-4xl font-light text-z-charcoal leading-[1.2] mb-6 text-balance">
+          {{ section.settings.founder_heading | default: 'Una obsesión con el bienestar intencional.' }}
+        </h2>
+        <div class="font-sans text-sm font-light text-z-muted leading-relaxed space-y-4 mb-8">
+          {%- if section.settings.founder_body != blank -%}
+            {{ section.settings.founder_body }}
+          {%- else -%}
+            <p>Z!ngha nació de una pregunta simple: ¿por qué el bienestar tiene que ser complicado? Después de años en la industria del wellness y la aromaterapia clínica, creamos la fórmula que nos hubiera gustado encontrar cuando más la necesitábamos.</p>
+            <p>Hoy, cada Z!ngha es el resultado de esa búsqueda — ciencia, diseño y naturaleza en perfecta proporción.</p>
+          {%- endif -%}
+        </div>
+        {%- if section.settings.founder_name != blank -%}
+          <div class="pt-6 border-t border-z-sand/50">
+            <p class="font-serif text-lg font-normal text-z-charcoal">{{ section.settings.founder_name }}</p>
+            <p class="font-sans text-xs text-z-muted mt-0.5">{{ section.settings.founder_role | default: 'Co-Fundador, Z!ngha MX' }}</p>
+          </div>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{%- comment -%} — Sustainability note — {%- endcomment -%}
+{%- if section.settings.show_sustainability -%}
+<section class="bg-z-charcoal py-16 lg:py-20">
+  <div class="z-container">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center" data-fm="stagger">
+
+      <div class="py-8 px-6 border border-z-sand/10 rounded-card" data-fm-child>
+        <p class="font-serif text-4xl font-light text-z-cream mb-2">{{ section.settings.stat_1_number | default: '100%' }}</p>
+        <p class="font-sans text-sm text-z-sand/60">{{ section.settings.stat_1_label | default: 'Aceites de origen natural' }}</p>
+      </div>
+
+      <div class="py-8 px-6 border border-z-sand/10 rounded-card" data-fm-child>
+        <p class="font-serif text-4xl font-light text-z-cream mb-2">{{ section.settings.stat_2_number | default: '0' }}</p>
+        <p class="font-sans text-sm text-z-sand/60">{{ section.settings.stat_2_label | default: 'Sustancias adictivas o nicotina' }}</p>
+      </div>
+
+      <div class="py-8 px-6 border border-z-sand/10 rounded-card" data-fm-child>
+        <p class="font-serif text-4xl font-light text-z-cream mb-2">{{ section.settings.stat_3_number | default: '+350' }}</p>
+        <p class="font-sans text-sm text-z-sand/60">{{ section.settings.stat_3_label | default: 'Clientes satisfechos en México' }}</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{%- comment -%} — CTA — {%- endcomment -%}
+<section class="bg-z-sage py-20 lg:py-24">
+  <div class="z-container text-center" data-fm="fade-up">
+    <h2 class="font-serif text-3xl lg:text-4xl font-light text-white mb-6 text-balance">
+      {{ section.settings.cta_heading | default: '¿Lista para empezar tu ritual?' }}
+    </h2>
+    <p class="font-sans text-sm text-white/70 mb-10 max-w-md mx-auto">
+      {{ section.settings.cta_description | default: 'Explora nuestra colección y encuentra el Z!ngha que se adapta a tu momento.' }}
+    </p>
+    <a href="{{ section.settings.cta_url | default: '/collections/all' }}" class="btn-white">
+      {{ section.settings.cta_text | default: 'Ver colección' }}
+      <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Z!ngha Sobre Nosotros",
+  "settings": [
+    { "type": "header",       "content": "Hero" },
+    { "type": "image_picker", "id": "hero_image",          "label": "Imagen hero" },
+    { "type": "text",         "id": "label",               "label": "Etiqueta",            "default": "Sobre Nosotros" },
+    { "type": "text",         "id": "hero_heading",        "label": "Titular hero",        "default": "Nacimos de la búsqueda de calma." },
+    { "type": "textarea",     "id": "hero_description",    "label": "Descripción hero",    "default": "Z!ngha es el resultado de años investigando cómo la aromaterapia clínica puede transformar momentos cotidianos en rituales de bienestar intencional." },
+    { "type": "header",       "content": "Misión" },
+    { "type": "text",         "id": "mission_label",       "label": "Etiqueta misión",     "default": "Nuestra Misión" },
+    { "type": "textarea",     "id": "mission_statement",   "label": "Declaración de misión", "default": "Hacer accesible el bienestar real — un ritual olfativo a la vez." },
+    { "type": "header",       "content": "Valores" },
+    { "type": "text",         "id": "values_label",        "label": "Etiqueta valores",    "default": "Nuestros Principios" },
+    { "type": "text",         "id": "values_heading",      "label": "Titular valores",     "default": "Lo que guía cada decisión" },
+    { "type": "text",         "id": "value_1_title",       "label": "Valor 1 — Título",    "default": "Pureza" },
+    { "type": "textarea",     "id": "value_1_body",        "label": "Valor 1 — Descripción", "default": "Solo aceites esenciales con trazabilidad de origen. Cero sintéticos, cero conservadores, cero compromisos." },
+    { "type": "text",         "id": "value_2_title",       "label": "Valor 2 — Título",    "default": "Precisión" },
+    { "type": "textarea",     "id": "value_2_body",        "label": "Valor 2 — Descripción", "default": "Cada fórmula es el resultado de investigación en aromaterapia clínica aplicada al sistema nervioso autónomo." },
+    { "type": "text",         "id": "value_3_title",       "label": "Valor 3 — Título",    "default": "Presencia" },
+    { "type": "textarea",     "id": "value_3_body",        "label": "Valor 3 — Descripción", "default": "Diseñados para integrarse silenciosamente en tu rutina — sin rituales complicados, solo resultados." },
+    { "type": "header",       "content": "Fundadores" },
+    { "type": "image_picker", "id": "founder_image",       "label": "Foto fundador" },
+    { "type": "text",         "id": "founder_label",       "label": "Etiqueta",            "default": "Los Fundadores" },
+    { "type": "text",         "id": "founder_heading",     "label": "Titular",             "default": "Una obsesión con el bienestar intencional." },
+    { "type": "richtext",     "id": "founder_body",        "label": "Texto" },
+    { "type": "text",         "id": "founder_name",        "label": "Nombre del fundador", "default": "" },
+    { "type": "text",         "id": "founder_role",        "label": "Cargo",               "default": "Co-Fundador, Z!ngha MX" },
+    { "type": "header",       "content": "Estadísticas" },
+    { "type": "checkbox",     "id": "show_sustainability", "label": "Mostrar stats",       "default": true },
+    { "type": "text",         "id": "stat_1_number",       "label": "Stat 1 — Número",     "default": "100%" },
+    { "type": "text",         "id": "stat_1_label",        "label": "Stat 1 — Descripción","default": "Aceites de origen natural" },
+    { "type": "text",         "id": "stat_2_number",       "label": "Stat 2 — Número",     "default": "0" },
+    { "type": "text",         "id": "stat_2_label",        "label": "Stat 2 — Descripción","default": "Sustancias adictivas o nicotina" },
+    { "type": "text",         "id": "stat_3_number",       "label": "Stat 3 — Número",     "default": "+350" },
+    { "type": "text",         "id": "stat_3_label",        "label": "Stat 3 — Descripción","default": "Clientes satisfechos en México" },
+    { "type": "header",       "content": "CTA final" },
+    { "type": "text",         "id": "cta_heading",         "label": "Titular CTA",         "default": "¿Lista para empezar tu ritual?" },
+    { "type": "textarea",     "id": "cta_description",     "label": "Descripción CTA",     "default": "Explora nuestra colección y encuentra el Z!ngha que se adapta a tu momento." },
+    { "type": "url",          "id": "cta_url",             "label": "URL del CTA" },
+    { "type": "text",         "id": "cta_text",            "label": "Texto del CTA",       "default": "Ver colección" }
+  ],
+  "presets": [{ "name": "Z!ngha Sobre Nosotros" }]
+}
+{% endschema %}

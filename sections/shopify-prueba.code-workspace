@@ -1,0 +1,37 @@
+{
+	"folders": [
+		{
+			"name": "shopify-prueba",
+			"path": ".."
+		},
+		{
+			"name": "assets",
+			"path": "../../theme_export__znghamx-com-copia-de-tema-tienda-general__07MAY2026-0712pm/assets"
+		},
+		{
+			"name": "config",
+			"path": "../../theme_export__znghamx-com-copia-de-tema-tienda-general__07MAY2026-0712pm/config"
+		},
+		{
+			"name": "layout",
+			"path": "../../theme_export__znghamx-com-copia-de-tema-tienda-general__07MAY2026-0712pm/layout"
+		},
+		{
+			"name": "locales",
+			"path": "../../theme_export__znghamx-com-copia-de-tema-tienda-general__07MAY2026-0712pm/locales"
+		},
+		{
+			"name": "sections",
+			"path": "../../theme_export__znghamx-com-copia-de-tema-tienda-general__07MAY2026-0712pm/sections"
+		},
+		{
+			"name": "snippets",
+			"path": "../../theme_export__znghamx-com-copia-de-tema-tienda-general__07MAY2026-0712pm/snippets"
+		},
+		{
+			"name": "templates",
+			"path": "../../theme_export__znghamx-com-copia-de-tema-tienda-general__07MAY2026-0712pm/templates"
+		}
+	],
+	"settings": {}
+}

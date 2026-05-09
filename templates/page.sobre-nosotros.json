@@ -1,0 +1,37 @@
+{
+  "sections": {
+    "zingha_about": {
+      "type": "zingha-about",
+      "settings": {
+        "label": "Sobre Nosotros",
+        "hero_heading": "Nacimos de la búsqueda de calma.",
+        "hero_description": "Z!ngha es el resultado de años investigando cómo la aromaterapia clínica puede transformar momentos cotidianos en rituales de bienestar intencional.",
+        "mission_label": "Nuestra Misión",
+        "mission_statement": "Hacer accesible el bienestar real — un ritual olfativo a la vez.",
+        "values_label": "Nuestros Principios",
+        "values_heading": "Lo que guía cada decisión",
+        "value_1_title": "Pureza",
+        "value_1_body": "Solo aceites esenciales con trazabilidad de origen. Cero sintéticos, cero conservadores, cero compromisos.",
+        "value_2_title": "Precisión",
+        "value_2_body": "Cada fórmula es el resultado de investigación en aromaterapia clínica aplicada al sistema nervioso autónomo.",
+        "value_3_title": "Presencia",
+        "value_3_body": "Diseñados para integrarse silenciosamente en tu rutina — sin rituales complicados, solo resultados.",
+        "founder_label": "Los Fundadores",
+        "founder_heading": "Una obsesión con el bienestar intencional.",
+        "founder_role": "Co-Fundador, Z!ngha MX",
+        "show_sustainability": true,
+        "stat_1_number": "100%",
+        "stat_1_label": "Aceites de origen natural",
+        "stat_2_number": "0",
+        "stat_2_label": "Sustancias adictivas o nicotina",
+        "stat_3_number": "+350",
+        "stat_3_label": "Clientes satisfechos en México",
+        "cta_heading": "¿Lista para empezar tu ritual?",
+        "cta_description": "Explora nuestra colección y encuentra el Z!ngha que se adapta a tu momento.",
+        "cta_url": "/collections/all",
+        "cta_text": "Ver colección"
+      }
+    }
+  },
+  "order": ["zingha_about"]
+}

@@ -1,0 +1,105 @@
+{% comment %} Z!ngha — Sticky Navbar (luxury minimal) {% endcomment %}
+<nav id="z-nav"
+     class="fixed top-0 left-0 right-0 z-50"
+     aria-label="Navegación principal">
+
+  <div class="z-container">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+
+      {%- comment -%} Logo {%- endcomment -%}
+      <a href="{{ routes.root_url }}"
+         class="flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-z-sage rounded"
+         aria-label="Z!ngha MX — Inicio">
+        {%- if section.settings.logo != blank -%}
+          {{ section.settings.logo | image_url: width: 130 | image_tag:
+              class: 'h-7 lg:h-8 w-auto object-contain',
+              loading: 'eager',
+              alt: shop.name }}
+        {%- else -%}
+          <span class="font-serif text-xl font-light text-z-charcoal tracking-wide">
+            Z<span class="text-z-terra">!</span>ngha
+          </span>
+        {%- endif -%}
+      </a>
+
+      {%- comment -%} Desktop links {%- endcomment -%}
+      <ul class="hidden lg:flex items-center gap-10">
+        {%- for link in section.settings.menu.links -%}
+          <li>
+            <a href="{{ link.url }}"
+               class="animated-underline font-sans text-[13px] font-medium text-z-charcoal/70 hover:text-z-charcoal transition-colors duration-200 uppercase tracking-[0.08em]
+               {%- if link.active %} text-z-charcoal{% endif %}">
+              {{ link.title }}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      {%- comment -%} Right: CTA + Cart {%- endcomment -%}
+      <div class="flex items-center gap-4">
+        <a href="{{ section.settings.cta_url | default: routes.all_products_collection_url }}"
+           class="hidden sm:inline-flex btn-primary py-2.5 px-6">
+          {{ section.settings.cta_text | default: 'Comprar Ahora' }}
+        </a>
+
+        <a href="{{ routes.cart_url }}"
+           class="relative flex items-center justify-center w-9 h-9 text-z-charcoal/70 hover:text-z-charcoal transition-colors"
+           aria-label="Carrito ({{ cart.item_count }} artículos)">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/>
+          </svg>
+          {%- if cart.item_count > 0 -%}
+            <span class="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-z-sage text-[10px] font-bold text-white leading-none">
+              {{ cart.item_count }}
+            </span>
+          {%- endif -%}
+        </a>
+
+        <button id="z-menu-btn"
+                type="button"
+                aria-expanded="false"
+                aria-controls="z-mobile-menu"
+                aria-label="Abrir menú"
+                class="flex lg:hidden items-center justify-center w-9 h-9 text-z-charcoal/70 hover:text-z-charcoal transition-colors">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} Mobile menu {%- endcomment -%}
+  <div id="z-mobile-menu"
+       class="hidden lg:hidden bg-z-cream/97 backdrop-blur-sm border-t border-z-sand/50">
+    <ul class="z-container py-5 flex flex-col divide-y divide-z-sand/50">
+      {%- for link in section.settings.menu.links -%}
+        <li>
+          <a href="{{ link.url }}"
+             class="block py-3.5 font-sans text-sm font-medium text-z-charcoal/70 hover:text-z-charcoal uppercase tracking-[0.08em] transition-colors">
+            {{ link.title }}
+          </a>
+        </li>
+      {%- endfor -%}
+      <li class="pt-4">
+        <a href="{{ section.settings.cta_url | default: routes.all_products_collection_url }}"
+           class="btn-primary w-full justify-center py-3">
+          {{ section.settings.cta_text | default: 'Comprar Ahora' }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+{% schema %}
+{
+  "name": "Z!ngha Navbar",
+  "settings": [
+    { "type": "image_picker", "id": "logo",     "label": "Logo" },
+    { "type": "link_list",    "id": "menu",     "label": "Menú", "default": "main-menu" },
+    { "type": "url",          "id": "cta_url",  "label": "URL del CTA" },
+    { "type": "text",         "id": "cta_text", "label": "Texto del CTA", "default": "Comprar Ahora" }
+  ],
+  "presets": [{ "name": "Z!ngha Navbar" }]
+}
+{% endschema %}

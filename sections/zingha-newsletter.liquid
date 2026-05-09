@@ -1,0 +1,136 @@
+{% comment %} Z!ngha — Newsletter Capture {% endcomment %}
+<section class="bg-z-sage py-20 lg:py-28 overflow-hidden" aria-labelledby="newsletter-heading">
+  <div class="z-container">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+      {%- comment -%} Left: copy {%- endcomment -%}
+      <div data-fm="fade-left">
+        <p class="font-sans text-[11px] uppercase tracking-[0.22em] text-white/60 mb-5">
+          {{ section.settings.label | default: 'Comunidad Z!ngha' }}
+        </p>
+        <h2 id="newsletter-heading" class="font-serif text-4xl lg:text-5xl font-light text-white leading-[1.1] mb-5 text-balance">
+          {{ section.settings.heading | default: 'Suscríbete y recibe tu guía de aromaterapia gratis.' }}
+        </h2>
+        <p class="font-sans text-sm font-light text-white/70 leading-relaxed max-w-md">
+          {{ section.settings.description | default: 'Consejos semanales sobre aromaterapia clínica, rituales de bienestar y acceso prioritario a nuevas fórmulas. Sin spam, solo contenido que importa.' }}
+        </p>
+
+        {%- if section.settings.benefit_1 != blank or section.settings.benefit_2 != blank -%}
+          <ul class="mt-6 space-y-2" aria-label="Beneficios">
+            {%- if section.settings.benefit_1 != blank -%}
+              <li class="flex items-center gap-2.5 font-sans text-sm text-white/80">
+                <svg class="w-4 h-4 flex-shrink-0 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+                </svg>
+                {{ section.settings.benefit_1 }}
+              </li>
+            {%- endif -%}
+            {%- if section.settings.benefit_2 != blank -%}
+              <li class="flex items-center gap-2.5 font-sans text-sm text-white/80">
+                <svg class="w-4 h-4 flex-shrink-0 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+                </svg>
+                {{ section.settings.benefit_2 }}
+              </li>
+            {%- endif -%}
+            {%- if section.settings.benefit_3 != blank -%}
+              <li class="flex items-center gap-2.5 font-sans text-sm text-white/80">
+                <svg class="w-4 h-4 flex-shrink-0 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+                </svg>
+                {{ section.settings.benefit_3 }}
+              </li>
+            {%- endif -%}
+          </ul>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Right: form {%- endcomment -%}
+      <div data-fm="fade-right">
+        {% form 'customer', id: 'z-newsletter-form', class: 'z-newsletter-form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+
+          {%- if form.posted_successfully? -%}
+            <div class="py-8 text-center" id="z-newsletter-success" aria-live="polite">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/20 mb-5" aria-hidden="true">
+                <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+                </svg>
+              </div>
+              <p class="font-serif text-2xl font-light text-white mb-2">¡Gracias por unirte!</p>
+              <p class="font-sans text-sm text-white/70">Revisa tu correo — tu guía está en camino.</p>
+            </div>
+          {%- else -%}
+            <div class="space-y-4">
+
+              <div class="relative">
+                <label for="newsletter-name" class="font-sans text-[11px] uppercase tracking-widest text-white/50 block mb-2">
+                  Nombre
+                </label>
+                <input
+                  type="text"
+                  id="newsletter-name"
+                  name="contact[first_name]"
+                  autocomplete="given-name"
+                  placeholder="Tu nombre"
+                  class="newsletter-input w-full bg-transparent border-b border-white/30 focus:border-white text-white placeholder-white/30 font-sans text-sm py-3 outline-none transition-colors duration-200">
+              </div>
+
+              <div class="relative">
+                <label for="newsletter-email" class="font-sans text-[11px] uppercase tracking-widest text-white/50 block mb-2">
+                  Correo electrónico <span class="text-white/30" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="newsletter-email"
+                  name="contact[email]"
+                  autocomplete="email"
+                  required
+                  placeholder="tu@correo.com"
+                  class="newsletter-input w-full bg-transparent border-b border-white/30 focus:border-white text-white placeholder-white/30 font-sans text-sm py-3 outline-none transition-colors duration-200">
+              </div>
+
+              {%- if form.errors -%}
+                <p class="font-sans text-xs text-white/80 bg-white/10 rounded px-3 py-2" role="alert">
+                  {{ form.errors | default_errors }}
+                </p>
+              {%- endif -%}
+
+              <div class="pt-4">
+                <button type="submit" class="btn-white w-full justify-center">
+                  {{ section.settings.submit_text | default: 'Quiero mi guía gratis' }}
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+                  </svg>
+                </button>
+                <p class="font-sans text-[11px] text-white/40 text-center mt-4">
+                  {{ section.settings.privacy_text | default: 'Sin spam. Cancela cuando quieras.' }}
+                </p>
+              </div>
+
+            </div>
+          {%- endif -%}
+
+        {% endform %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Z!ngha Newsletter",
+  "settings": [
+    { "type": "text",     "id": "label",        "label": "Etiqueta",        "default": "Comunidad Z!ngha" },
+    { "type": "text",     "id": "heading",      "label": "Titular",         "default": "Suscríbete y recibe tu guía de aromaterapia gratis." },
+    { "type": "textarea", "id": "description",  "label": "Descripción",     "default": "Consejos semanales sobre aromaterapia clínica, rituales de bienestar y acceso prioritario a nuevas fórmulas. Sin spam, solo contenido que importa." },
+    { "type": "text",     "id": "benefit_1",    "label": "Beneficio 1",     "default": "Guía de aromaterapia clínica (gratis)" },
+    { "type": "text",     "id": "benefit_2",    "label": "Beneficio 2",     "default": "Acceso anticipado a nuevas fórmulas" },
+    { "type": "text",     "id": "benefit_3",    "label": "Beneficio 3",     "default": "Descuentos exclusivos para suscriptores" },
+    { "type": "text",     "id": "submit_text",  "label": "Texto del botón", "default": "Quiero mi guía gratis" },
+    { "type": "text",     "id": "privacy_text", "label": "Nota de privacidad", "default": "Sin spam. Cancela cuando quieras." }
+  ],
+  "presets": [{ "name": "Z!ngha Newsletter" }]
+}
+{% endschema %}

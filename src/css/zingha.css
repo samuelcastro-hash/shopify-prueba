@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ─────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #FAF8F5;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #1C1C1A;
+    -webkit-font-smoothing: antialiased;
+    background-color: #FAF8F5;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+}
+
+/* ─── Components ────────────────────────────────────────── */
+@layer components {
+
+  /* ── Container ── */
+  .z-container {
+    @apply mx-auto w-full max-w-content px-6 sm:px-10 lg:px-[120px];
+  }
+
+  .z-container-narrow {
+    @apply mx-auto w-full max-w-4xl px-6 sm:px-10;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-z-sage text-white font-sans font-semibold
+           text-[13px] uppercase tracking-[0.1em]
+           px-8 py-3.5 rounded-btn
+           transition-all duration-300 ease-luxury
+           hover:bg-z-sage-dark active:scale-[0.98]
+           focus-visible:outline-none focus-visible:ring-2
+           focus-visible:ring-z-sage focus-visible:ring-offset-2
+           focus-visible:ring-offset-z-cream;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+           border border-z-charcoal text-z-charcoal font-sans font-semibold
+           text-[13px] uppercase tracking-[0.1em]
+           px-8 py-3.5 rounded-btn bg-transparent
+           transition-all duration-300 ease-luxury
+           hover:bg-z-charcoal hover:text-white
+           active:scale-[0.98]
+           focus-visible:outline-none focus-visible:ring-2
+           focus-visible:ring-z-charcoal focus-visible:ring-offset-2;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2
+           font-sans font-medium text-[13px] uppercase tracking-[0.1em]
+           text-z-charcoal underline underline-offset-4
+           decoration-z-sand hover:decoration-z-charcoal
+           transition-all duration-300;
+  }
+
+  .btn-primary-light {
+    @apply inline-flex items-center justify-center gap-2
+           bg-z-cream text-z-charcoal font-sans font-semibold
+           text-[13px] uppercase tracking-[0.1em]
+           px-8 py-3.5 rounded-btn
+           transition-all duration-300 ease-luxury
+           hover:bg-white active:scale-[0.98]
+           focus-visible:outline-none;
+  }
+
+  .btn-white {
+    @apply inline-flex items-center justify-center gap-2
+           bg-white text-z-charcoal font-sans font-semibold
+           text-[13px] uppercase tracking-[0.1em]
+           px-8 py-3.5 rounded-btn
+           transition-all duration-300 ease-luxury
+           hover:bg-z-cream active:scale-[0.98]
+           focus-visible:outline-none focus-visible:ring-2
+           focus-visible:ring-white focus-visible:ring-offset-2
+           focus-visible:ring-offset-z-sage;
+  }
+
+  /* ── Labels ── */
+  .z-label {
+    @apply inline-block font-sans text-[11px] font-medium
+           uppercase tracking-[0.2em] text-z-terra;
+  }
+
+  .z-label-sage {
+    @apply inline-block font-sans text-[11px] font-medium
+           uppercase tracking-[0.2em] text-z-sage;
+  }
+
+  /* ── Typography ── */
+  .heading-display {
+    @apply font-serif font-light text-display-xl text-z-charcoal leading-none;
+  }
+
+  .heading-xl {
+    @apply font-serif font-light text-display-lg text-z-charcoal;
+  }
+
+  .heading-lg {
+    @apply font-serif font-normal text-display-md text-z-charcoal;
+  }
+
+  .heading-md {
+    @apply font-serif text-2xl sm:text-3xl font-normal text-z-charcoal leading-snug;
+  }
+
+  .body-lg {
+    @apply font-sans text-base font-light text-z-muted leading-relaxed;
+  }
+
+  .body-sm {
+    @apply font-sans text-sm font-light text-z-muted leading-relaxed;
+  }
+
+  /* ── Divider ── */
+  .z-divider {
+    @apply block h-px w-12 bg-z-sand;
+  }
+
+  /* ── Card ── */
+  .product-card-link {
+    @apply block overflow-hidden;
+  }
+
+}
+
+/* ─── Utilities ─────────────────────────────────────────── */
+@layer utilities {
+
+  .text-balance { text-wrap: balance; }
+
+  .bg-cream    { background-color: #FAF8F5; }
+  .bg-beige    { background-color: #EDE8E0; }
+  .bg-charcoal { background-color: #1C1C1A; }
+
+  /* Underline animation for ghost links */
+  .animated-underline {
+    position: relative;
+  }
+  .animated-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .animated-underline:hover::after {
+    width: 100%;
+  }
+
+  /* Aspect ratio helpers */
+  .aspect-4\/5  { aspect-ratio: 4/5; }
+  .aspect-3\/4  { aspect-ratio: 3/4; }
+  .aspect-4\/3  { aspect-ratio: 4/3; }
+  .aspect-golden { aspect-ratio: 1.618/1; }
+
+  /* Scrollbar hide */
+  .scrollbar-none { scrollbar-width: none; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+}
+
+/* ─── Framer Motion initial states ──────────────────────── */
+[data-fm="fade-up"] {
+  opacity: 0;
+  transform: translateY(28px);
+}
+[data-fm="fade-in"] {
+  opacity: 0;
+}
+[data-fm="fade-left"] {
+  opacity: 0;
+  transform: translateX(-28px);
+}
+[data-fm="fade-right"] {
+  opacity: 0;
+  transform: translateX(28px);
+}
+[data-fm="scale-in"] {
+  opacity: 0;
+  transform: scale(0.96);
+}
+[data-fm="stagger"] [data-fm-child] {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* ─── Sticky Nav ─────────────────────────────────────────── */
+#z-nav {
+  transition: background 0.4s ease, box-shadow 0.4s ease,
+              backdrop-filter 0.4s ease;
+  background: transparent;
+}
+#z-nav.nav-scrolled {
+  background: rgba(250, 248, 245, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 rgba(28, 28, 26, 0.06);
+}
+
+/* ─── Hero ───────────────────────────────────────────────── */
+.hero-img-wrap {
+  overflow: hidden;
+}
+.hero-img-wrap img {
+  transition: transform 8s ease;
+}
+.hero-loaded .hero-img-wrap img {
+  transform: scale(1.04);
+}
+
+/* ─── Product card image hover ───────────────────────────── */
+.z-product-img {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.z-product-img:hover,
+.group:hover .z-product-img {
+  transform: scale(1.04);
+}
+
+/* ─── Ritual tabs ────────────────────────────────────────── */
+.ritual-panel { display: none; }
+.ritual-panel.active { display: grid; }
+.ritual-tab {
+  position: relative;
+  transition: color 0.25s ease;
+}
+.ritual-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #1C1C1A;
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ritual-tab.active::after,
+.ritual-tab:hover::after {
+  width: 100%;
+}
+.ritual-tab.active {
+  color: #1C1C1A;
+  font-weight: 500;
+}
+
+/* ─── FAQ ────────────────────────────────────────────────── */
+.faq-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.25s ease;
+  opacity: 0;
+}
+.faq-item.open .faq-content {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.faq-content > div { overflow: hidden; }
+.faq-icon-plus  { display: block; }
+.faq-icon-minus { display: none;  }
+.faq-item.open .faq-icon-plus  { display: none;  }
+.faq-item.open .faq-icon-minus { display: block; }
+
+/* ─── Newsletter form ────────────────────────────────────── */
+.newsletter-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(250, 248, 245, 0.4);
+  color: #FAF8F5;
+  padding: 0.625rem 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.25s ease;
+  width: 100%;
+}
+.newsletter-input::placeholder { color: rgba(250,248,245,0.45); }
+.newsletter-input:focus { border-bottom-color: rgba(250,248,245,0.85); }
+
+/* ─── Theme header override ──────────────────────────────── */
+.shopify-section-group-header-group {
+  position: relative;
+  z-index: 40;
+}
+
+/* ─── Responsive image fix ───────────────────────────────── */
+img[loading="lazy"] { color: transparent; }
