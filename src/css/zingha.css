@@ -176,30 +176,14 @@
   .scrollbar-none::-webkit-scrollbar { display: none; }
 }
 
-/* ─── Framer Motion initial states ──────────────────────── */
-[data-fm="fade-up"] {
-  opacity: 0;
-  transform: translateY(28px);
-}
-[data-fm="fade-in"] {
-  opacity: 0;
-}
-[data-fm="fade-left"] {
-  opacity: 0;
-  transform: translateX(-28px);
-}
-[data-fm="fade-right"] {
-  opacity: 0;
-  transform: translateX(28px);
-}
-[data-fm="scale-in"] {
-  opacity: 0;
-  transform: scale(0.96);
-}
-[data-fm="stagger"] [data-fm-child] {
-  opacity: 0;
-  transform: translateY(20px);
-}
+/* ─── Scroll-reveal initial states (only when JS is active) ─ */
+/* Gate on .js so content is always visible without JavaScript  */
+.js [data-fm="fade-up"]   { opacity: 0; transform: translateY(28px); }
+.js [data-fm="fade-in"]   { opacity: 0; }
+.js [data-fm="fade-left"] { opacity: 0; transform: translateX(-28px); }
+.js [data-fm="fade-right"]{ opacity: 0; transform: translateX(28px); }
+.js [data-fm="scale-in"]  { opacity: 0; transform: scale(0.96); }
+.js [data-fm="stagger"] [data-fm-child] { opacity: 0; transform: translateY(20px); }
 
 /* ─── Sticky Nav ─────────────────────────────────────────── */
 #z-nav {

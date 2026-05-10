@@ -1,8 +1,9 @@
 import { animate, inView, stagger } from 'motion'
 
 /* ─── Config ─────────────────────────────────────────────── */
-const EASE  = [0.22, 1, 0.36, 1]
-const MARGIN = '-60px 0px'
+const EASE   = [0.22, 1, 0.36, 1]
+// Fire as soon as any pixel enters the viewport (no negative margin)
+const MARGIN = '0px'
 
 /* ─── Scroll reveals ─────────────────────────────────────── */
 inView('[data-fm="fade-up"]', (e) => {
