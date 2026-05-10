@@ -1,1 +1,65 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{"padding_top":36,"padding_bottom":36}},"37e8cdd4-ab58-48f7-b736-913308245cdb":{"type":"collapsible-content","blocks":{"template--18327068148007__37e8cdd4-ab58-48f7-b736-913308245cdb-167980065688e3e5f3-0":{"type":"collapsible_row","settings":{"heading":"Question","icon":"check_mark","row_content":"","page":""}},"template--18327068148007__37e8cdd4-ab58-48f7-b736-913308245cdb-167980065688e3e5f3-1":{"type":"collapsible_row","settings":{"heading":"Question","icon":"check_mark","row_content":"","page":""}},"template--18327068148007__37e8cdd4-ab58-48f7-b736-913308245cdb-167980065688e3e5f3-2":{"type":"collapsible_row","settings":{"heading":"Question","icon":"check_mark","row_content":"","page":""}},"template--18327068148007__37e8cdd4-ab58-48f7-b736-913308245cdb-167980065688e3e5f3-3":{"type":"collapsible_row","settings":{"heading":"Question","icon":"check_mark","row_content":"","page":""}}},"block_order":["template--18327068148007__37e8cdd4-ab58-48f7-b736-913308245cdb-167980065688e3e5f3-0","template--18327068148007__37e8cdd4-ab58-48f7-b736-913308245cdb-167980065688e3e5f3-1","template--18327068148007__37e8cdd4-ab58-48f7-b736-913308245cdb-167980065688e3e5f3-2","template--18327068148007__37e8cdd4-ab58-48f7-b736-913308245cdb-167980065688e3e5f3-3"],"settings":{"caption":"Frequently asked questions","heading":"FAQ","heading_size":"h0","heading_alignment":"center","layout":"none","color_scheme":"background-1","container_color_scheme":"background-2","open_first_collapsible_row":false,"image_ratio":"adapt","desktop_layout":"image_second","padding_top":36,"padding_bottom":36}}},"order":["main","37e8cdd4-ab58-48f7-b736-913308245cdb"]}
+{
+  "sections": {
+    "zingha_faq": {
+      "type": "zingha-faq",
+      "settings": {
+        "label": "Preguntas frecuentes",
+        "heading": "¿Tienes dudas? Las respondemos.",
+        "description": "Si no encuentras lo que buscas, nuestro equipo está listo para ayudarte."
+      },
+      "blocks": {
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Qué es Z!ngha y cómo funciona?",
+            "answer": "<p>Z!ngha es un inhalador personal de aromaterapia con aceites esenciales 100% naturales. Al inhalar, los compuestos activan el sistema límbico, mejorando el estado de ánimo, reduciendo la ansiedad o aumentando la energía según la fórmula elegida.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Contiene nicotina o es perjudicial?",
+            "answer": "<p>No. Z!ngha no contiene nicotina, tabaco ni sustancias adictivas. Solo aceites esenciales de origen natural, sin sintéticos ni conservadores.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cuánto tiempo dura cada inhalador?",
+            "answer": "<p>Con uso normal (10–15 inhalaciones diarias), dura entre 2 y 4 semanas. Los modelos dobles tienen el doble de capacidad.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Envían a todo México?",
+            "answer": "<p>Sí, enviamos a toda la República Mexicana. Los pedidos se procesan en 1–2 días hábiles y la entrega toma entre 3–7 días hábiles con número de rastreo incluido.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cuál es su política de devoluciones?",
+            "answer": "<p>Si el producto llegó dañado, contáctanos dentro de los 7 días posteriores a la recepción. Por higiene, los inhaladores usados no son elegibles para devolución, pero siempre encontramos una solución.</p>"
+          }
+        },
+        "faq_6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cómo sé qué aroma es el indicado para mí?",
+            "answer": "<p>Depende de lo que busques en cada momento. Mango es ideal para relajarte y dormir mejor. Surge (menta/eucalipto) es perfecto para concentración y energía. Consulta nuestra guía de aromas o escríbenos y te ayudamos a elegir.</p>"
+          }
+        },
+        "faq_7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Puedo usarlo si tengo alergias?",
+            "answer": "<p>Si tienes alergias a algún aceite esencial en particular, te recomendamos revisar los ingredientes de cada fórmula antes de comprar. Consulta con tu médico si tienes dudas. Escríbenos y con gusto te orientamos.</p>"
+          }
+        }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5", "faq_6", "faq_7"]
+    }
+  },
+  "order": ["zingha_faq"]
+}

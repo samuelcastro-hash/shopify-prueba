@@ -1,7 +1,7 @@
 {% comment %} Z!ngha — FAQ Accordion {% endcomment %}
 <section class="bg-z-cream py-20 lg:py-28" aria-labelledby="faq-heading">
   <div class="z-container">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20{% if section.settings.image != blank %} lg:items-start{% endif %}">
 
       {%- comment -%} Left: heading (sticky on desktop) {%- endcomment -%}
       <div class="lg:col-span-4 lg:sticky lg:top-24" data-fm="fade-left">
@@ -16,7 +16,17 @@
       </div>
 
       {%- comment -%} Right: accordion {%- endcomment -%}
-      <div class="lg:col-span-8" data-fm="fade-right">
+      <div class="lg:col-span-8{% if section.settings.image != blank %} lg:grid lg:grid-cols-2 lg:gap-20 lg:items-start{% endif %}" data-fm="fade-right">
+        {%- if section.settings.image != blank -%}
+          <div class="hidden lg:block relative overflow-hidden rounded-card aspect-4/5 sticky top-24" data-fm="fade-right">
+            {{ section.settings.image | image_url: width: 800 | image_tag:
+                class: 'w-full h-full object-cover object-center',
+                loading: 'lazy',
+                alt: section.settings.image.alt | default: 'Z!ngha FAQ',
+                widths: '400,800',
+                sizes: '45vw' }}
+          </div>
+        {%- endif -%}
         <div class="divide-y divide-z-sand" role="list">
           {%- for block in section.blocks -%}
             {%- case block.type -%}
@@ -51,6 +61,7 @@
             {%- endcase -%}
           {%- endfor -%}
         </div>
+        {%- comment -%} End accordion list — closes inner grid col when image is set {%- endcomment -%}
       </div>
     </div>
   </div>
@@ -62,8 +73,9 @@
   "settings": [
     { "type": "text",     "id": "label",       "label": "Etiqueta",    "default": "Preguntas frecuentes" },
     { "type": "text",     "id": "heading",     "label": "Titular",     "default": "¿Tienes dudas? Las respondemos." },
-    { "type": "textarea", "id": "description", "label": "Descripción", "default": "Si no encuentras lo que buscas, nuestro equipo está listo para ayudarte." },
-    { "type": "url",      "id": "contact_url", "label": "URL de contacto" }
+    { "type": "textarea",    "id": "description", "label": "Descripción", "default": "Si no encuentras lo que buscas, nuestro equipo está listo para ayudarte." },
+    { "type": "image_picker", "id": "image",       "label": "Imagen lateral (opcional)" },
+    { "type": "url",           "id": "contact_url", "label": "URL de contacto" }
   ],
   "blocks": [
     {

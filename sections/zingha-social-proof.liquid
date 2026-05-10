@@ -1,5 +1,15 @@
 {% comment %} Z!ngha — Testimonials (minimal, no photos) {% endcomment %}
-<section class="bg-z-beige py-20 lg:py-28" aria-labelledby="testimonials-heading">
+<section class="relative overflow-hidden bg-z-beige py-20 lg:py-28" aria-labelledby="testimonials-heading">
+  {%- if section.settings.bg_image != blank -%}
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      {{ section.settings.bg_image | image_url: width: 1600 | image_tag:
+          class: 'w-full h-full object-cover object-center opacity-[0.06]',
+          loading: 'lazy',
+          alt: '',
+          widths: '800,1200,1600',
+          sizes: '100vw' }}
+    </div>
+  {%- endif -%}
   <div class="z-container">
 
     <div class="text-center mb-14" data-fm="fade-up">
@@ -43,9 +53,18 @@
             </p>
 
             <footer class="flex items-center gap-3 pt-4 border-t border-z-sand/50">
-              <div class="flex h-9 w-9 items-center justify-center rounded-full bg-z-beige font-serif text-sm font-normal text-z-charcoal flex-shrink-0" aria-hidden="true">
-                {{ block.settings.name | slice: 0 | upcase }}
-              </div>
+              {%- if block.settings.avatar != blank -%}
+                {{ block.settings.avatar | image_url: width: 80 | image_tag:
+                    class: 'h-9 w-9 rounded-full object-cover object-center flex-shrink-0',
+                    loading: 'lazy',
+                    alt: block.settings.name,
+                    widths: '80',
+                    sizes: '36px' }}
+              {%- else -%}
+                <div class="flex h-9 w-9 items-center justify-center rounded-full bg-z-beige font-serif text-sm font-normal text-z-charcoal flex-shrink-0" aria-hidden="true">
+                  {{ block.settings.name | slice: 0 | upcase }}
+                </div>
+              {%- endif -%}
               <div>
                 <p class="font-sans text-sm font-medium text-z-charcoal">{{ block.settings.name }}</p>
                 <p class="font-sans text-xs text-z-muted">{{ block.settings.location | default: 'México' }}</p>
@@ -83,6 +102,7 @@
 {
   "name": "Z!ngha Testimonios",
   "settings": [
+    { "type": "image_picker", "id": "bg_image", "label": "Imagen de fondo (opcional)" },
     { "type": "text",     "id": "label",          "label": "Etiqueta",         "default": "Testimonios" },
     { "type": "text",     "id": "heading",         "label": "Titular",          "default": "Lo que dicen quienes nos eligen" },
     { "type": "text",     "id": "rating_summary",  "label": "Resumen calificación", "default": "4.9 / 5 · +350 reseñas verificadas" },
@@ -94,6 +114,7 @@
       "type": "testimonial",
       "name": "Testimonio",
       "settings": [
+        { "type": "image_picker", "id": "avatar", "label": "Foto del cliente (opcional)" },
         { "type": "text",     "id": "name",     "label": "Nombre",          "default": "Cliente" },
         { "type": "text",     "id": "location", "label": "Ciudad",          "default": "Ciudad de México" },
         { "type": "textarea", "id": "quote",    "label": "Cita",            "default": "Excelente producto." },

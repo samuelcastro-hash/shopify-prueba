@@ -47,6 +47,16 @@
 
       {%- comment -%} Right: form {%- endcomment -%}
       <div data-fm="fade-right">
+        {%- if section.settings.image != blank -%}
+          <div class="relative overflow-hidden rounded-card aspect-4/3 mb-8" data-fm="fade-in">
+            {{ section.settings.image | image_url: width: 800 | image_tag:
+                class: 'w-full h-full object-cover object-center',
+                loading: 'lazy',
+                alt: section.settings.image.alt | default: 'Z!ngha',
+                widths: '400,800',
+                sizes: '(min-width:1024px) 45vw, 90vw' }}
+          </div>
+        {%- endif -%}
         {% form 'customer', id: 'z-newsletter-form', class: 'z-newsletter-form' %}
           <input type="hidden" name="contact[tags]" value="newsletter">
 
@@ -122,6 +132,7 @@
 {
   "name": "Z!ngha Newsletter",
   "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagen decorativa (columna derecha)" },
     { "type": "text",     "id": "label",        "label": "Etiqueta",        "default": "Comunidad Z!ngha" },
     { "type": "text",     "id": "heading",      "label": "Titular",         "default": "Suscríbete y recibe tu guía de aromaterapia gratis." },
     { "type": "textarea", "id": "description",  "label": "Descripción",     "default": "Consejos semanales sobre aromaterapia clínica, rituales de bienestar y acceso prioritario a nuevas fórmulas. Sin spam, solo contenido que importa." },

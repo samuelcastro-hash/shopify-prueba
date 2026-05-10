@@ -15,7 +15,19 @@
         {%- when 'feature' -%}
           <div class="flex flex-col items-center sm:items-start text-center sm:text-left" data-fm-child {{ block.shopify_attributes }}>
 
+            {%- if block.settings.image != blank -%}
+              <div class="mb-6 overflow-hidden rounded-card aspect-4/3 w-full" data-fm="fade-in">
+                {{ block.settings.image | image_url: width: 600 | image_tag:
+                    class: 'w-full h-full object-cover object-center',
+                    loading: 'lazy',
+                    alt: block.settings.image.alt | default: block.settings.title,
+                    widths: '300,600',
+                    sizes: '(min-width:640px) 33vw, 100vw' }}
+              </div>
+            {%- endif -%}
+
             {%- comment -%} Icon — thin line SVGs {%- endcomment -%}
+            {%- unless block.settings.image != blank -%}
             <div class="mb-6 h-10 w-10 flex items-center justify-center text-z-sage" aria-hidden="true">
               {%- case block.settings.icon -%}
               {%- when 'leaf' -%}
@@ -44,6 +56,7 @@
                 </svg>
               {%- endcase -%}
             </div>
+            {%- endunless -%}
 
             <span class="z-divider mb-5 sm:mx-0 mx-auto"></span>
 
@@ -71,6 +84,7 @@
       "type": "feature",
       "name": "Feature",
       "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen opcional (sustituye al ícono)" },
         {
           "type": "select", "id": "icon", "label": "Ícono",
           "options": [
