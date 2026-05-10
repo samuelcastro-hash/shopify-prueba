@@ -8,28 +8,27 @@
     height: 100%;
   }
 
-  /* Glow layer behind the product */
+  /* Glow behind the product */
   .z-inhaler-stage::before {
     content: '';
     position: absolute;
     inset: 10% 5%;
     border-radius: 50%;
     background: radial-gradient(ellipse at center,
-      rgba(245, 180, 60, 0.30) 0%,
-      rgba(245, 180, 60, 0.12) 45%,
+      rgba(245,180,60,.32) 0%,
+      rgba(245,180,60,.12) 45%,
       transparent 70%
     );
-    filter: blur(32px);
+    filter: blur(36px);
     z-index: 0;
     animation: z-glow-pulse 5s ease-in-out infinite;
   }
 
   @keyframes z-glow-pulse {
-    0%, 100% { opacity: 0.7; transform: scale(1); }
-    50%       { opacity: 1;   transform: scale(1.08); }
+    0%,100% { opacity:.7; transform:scale(1); }
+    50%      { opacity:1;  transform:scale(1.08); }
   }
 
-  /* Shared image base */
   .z-inhaler-img {
     position: absolute;
     inset: 0;
@@ -39,112 +38,234 @@
     object-position: center bottom;
   }
 
-  /* Open inhaler (with nozzles) — always behind */
-  .z-inhaler-open {
-    z-index: 1;
-  }
-
-  /* Closed inhaler (the "cap") — slides up and down */
+  .z-inhaler-open   { z-index: 1; }
   .z-inhaler-closed {
     z-index: 2;
-    animation: z-cap-off 5.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    animation: z-cap-off 5.5s cubic-bezier(.22,1,.36,1) infinite;
     will-change: transform;
   }
 
-  /*
-   * 0–18%  : closed  (pause — cap on)
-   * 18–40% : cap slides UP (uncapping)
-   * 40–62% : open    (pause — nozzles revealed)
-   * 62–84% : cap slides DOWN (recapping)
-   * 84–100%: closed  (back to resting state)
-   */
+  /* 0-18%: closed · 18-40%: cap slides up · 40-62%: open · 62-84%: cap down · 84-100%: closed */
   @keyframes z-cap-off {
     0%,  18% { transform: translateY(0%); }
     40%, 60% { transform: translateY(-108%); }
-    82%, 100%{ transform: translateY(0%); }
+    82%,100% { transform: translateY(0%); }
   }
 
-  /* Gentle float on the whole stage */
-  .z-inhaler-float {
-    animation: z-float 6s ease-in-out infinite;
-  }
-
+  .z-inhaler-float { animation: z-float 6s ease-in-out infinite; }
   @keyframes z-float {
-    0%, 100% { transform: translateY(0px); }
-    50%       { transform: translateY(-10px); }
+    0%,100% { transform: translateY(0px); }
+    50%     { transform: translateY(-10px); }
   }
 
-  /* ── Mobile product strip ── */
+  /* Mobile strip */
   .z-hero-product-mobile {
     position: relative;
     width: 220px;
     height: 260px;
     margin: 0 auto 2rem;
-    overflow: hidden; /* clips the closed img as it slides off */
+    overflow: hidden;
   }
 
-  /* ── Desktop product pane ── */
-  .z-hero-product-desktop {
-    overflow: hidden; /* clips closed img as it slides off */
+  /* Desktop pane */
+  .z-hero-product-desktop { overflow: hidden; }
+
+  /* ── CSS-only product visual (fallback when no images uploaded) ── */
+  .z-product-mockup {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
   }
 
-  /* Fallback: single-image mode (no open image set) */
-  .z-inhaler-single {
-    z-index: 2;
+  .z-pm-device {
+    position: relative;
+    width: clamp(160px, 22vw, 280px);
+    aspect-ratio: 9/14;
+    background: linear-gradient(145deg, #f5c844 0%, #f0a800 60%, #d48c00 100%);
+    border-radius: 28px;
+    box-shadow: 0 32px 80px rgba(200,120,0,.35), 0 8px 24px rgba(0,0,0,.2);
+    overflow: hidden;
+    animation: z-cap-off 5.5s cubic-bezier(.22,1,.36,1) infinite, z-float 6s ease-in-out infinite;
   }
+
+  .z-pm-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .z-pm-brand {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(.6rem, 1.2vw, .85rem);
+    font-weight: 700;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: #d4005a;
+    margin-bottom: .3em;
+  }
+
+  .z-pm-name {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -.02em;
+    line-height: 1;
+    margin-bottom: .5em;
+  }
+
+  .z-pm-badge {
+    display: inline-block;
+    border: 2px solid #d4005a;
+    border-radius: 6px;
+    padding: .2em .6em;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(.45rem, .8vw, .6rem);
+    font-weight: 700;
+    color: #d4005a;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: .4em;
+  }
+
+  .z-pm-sub {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(.45rem,.8vw,.6rem);
+    font-weight: 500;
+    color: rgba(255,255,255,.85);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .z-pm-nozzles {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 3;
+  }
+
+  .z-pm-nozzle {
+    width: 18px;
+    height: 36px;
+    background: linear-gradient(180deg, #444 0%, #222 100%);
+    border-radius: 9px 9px 4px 4px;
+    box-shadow: inset 2px 0 4px rgba(255,255,255,.1);
+  }
+
+  /* Desktop mockup wrapper */
+  .z-hero-mockup-desktop {
+    position: absolute;
+    right: 0; top: 0;
+    width: 42%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 5vh;
+    overflow: hidden;
+  }
+
+  /* Glow circle behind mockup */
+  .z-hero-mockup-desktop::before {
+    content: '';
+    position: absolute;
+    inset: 15% 10%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(245,180,60,.25) 0%, transparent 70%);
+    filter: blur(48px);
+  }
+
+  @media (min-width: 1280px) { .z-hero-mockup-desktop { width: 45%; } }
 </style>
+
+{%- comment -%} Resolve product images — image picker > store product > CSS mockup {%- endcomment -%}
+{%- assign img_closed = section.settings.product_image_closed | default: section.settings.product_image -%}
+{%- assign img_open   = section.settings.product_image_open -%}
+
+{%- comment -%} Auto-load from first store product if no image configured {%- endcomment -%}
+{%- if img_closed == blank -%}
+  {%- assign auto_product = section.settings.featured_product -%}
+  {%- if auto_product == blank -%}
+    {%- for p in collections.all.products limit: 1 -%}
+      {%- assign auto_product = p -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- if auto_product != blank and auto_product.images.size > 0 -%}
+    {%- assign img_closed = auto_product.images[0] -%}
+    {%- if auto_product.images.size > 1 -%}
+      {%- assign img_open = auto_product.images[1] -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- assign use_mockup = false -%}
+{%- if img_closed == blank -%}{%- assign use_mockup = true -%}{%- endif -%}
 
 <section id="z-hero-wrap"
          class="relative min-h-screen flex items-end lg:items-center bg-z-cream overflow-hidden"
          aria-label="Hero">
 
-  {%- comment -%} Background image {%- endcomment -%}
+  {%- comment -%} Background {%- endcomment -%}
   {%- if section.settings.bg_image != blank -%}
     <div class="absolute inset-0" aria-hidden="true">
       {{ section.settings.bg_image | image_url: width: 2000 | image_tag:
           class: 'w-full h-full object-cover object-center',
-          loading: 'eager',
-          fetchpriority: 'high',
-          alt: '',
-          widths: '750,1200,1600,2000',
-          sizes: '100vw' }}
+          loading: 'eager', fetchpriority: 'high', alt: '',
+          widths: '750,1200,1600,2000', sizes: '100vw' }}
       <div class="absolute inset-0 bg-gradient-to-t from-z-charcoal/30 via-z-charcoal/10 to-transparent lg:bg-gradient-to-r lg:from-z-cream/80 lg:via-z-cream/50 lg:to-transparent"></div>
     </div>
   {%- else -%}
     <div class="absolute inset-0 bg-z-beige" aria-hidden="true">
-      <div class="absolute bottom-0 right-0 w-2/3 h-full bg-z-cream-dark/50" style="clip-path:polygon(15% 0%,100% 0%,100% 100%,0% 100%)"></div>
+      <div class="absolute bottom-0 right-0 w-2/3 h-full bg-z-cream-dark/50"
+           style="clip-path:polygon(15% 0%,100% 0%,100% 100%,0% 100%)"></div>
     </div>
   {%- endif -%}
 
-  {%- comment -%} ── Animated product — desktop ── {%- endcomment -%}
-  {%- assign has_closed = section.settings.product_image_closed
-      | default: section.settings.product_image -%}
-  {%- assign has_open   = section.settings.product_image_open -%}
-
-  {%- if has_closed != blank -%}
+  {%- comment -%} ── Product visual — desktop ── {%- endcomment -%}
+  {%- if use_mockup -%}
+    <div class="z-hero-mockup-desktop hidden lg:flex" aria-hidden="true" data-fm="fade-right">
+      <div class="z-product-mockup">
+        <div class="z-pm-nozzles">
+          <div class="z-pm-nozzle"></div>
+          <div class="z-pm-nozzle"></div>
+        </div>
+        <div class="z-pm-device">
+          <div class="z-pm-label">
+            <span class="z-pm-brand">Z!ngha™</span>
+            <span class="z-pm-name">MANGO</span>
+            <span class="z-pm-badge">Mint-Based<br>Fruit Energy</span>
+            <span class="z-pm-sub">Aromatherapy on-the-go</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- else -%}
     <div class="z-hero-product-desktop hidden lg:block absolute right-0 top-0 h-full w-[42%] xl:w-[45%]"
          aria-hidden="true" data-fm="fade-right">
       <div class="z-inhaler-float w-full h-full">
         <div class="z-inhaler-stage">
-
-          {%- if has_open != blank -%}
-            {{- has_open | image_url: width: 900 | image_tag:
+          {%- if img_open != blank -%}
+            {{- img_open | image_url: width: 900 | image_tag:
                 class: 'z-inhaler-img z-inhaler-open drop-shadow-2xl',
-                loading: 'eager',
-                fetchpriority: 'high',
-                alt: '',
-                widths: '600,900',
-                sizes: '45vw' -}}
+                loading: 'eager', fetchpriority: 'high', alt: '',
+                widths: '600,900', sizes: '45vw' -}}
           {%- endif -%}
-
-          {{- has_closed | image_url: width: 900 | image_tag:
+          {{- img_closed | image_url: width: 900 | image_tag:
               class: 'z-inhaler-img z-inhaler-closed drop-shadow-2xl',
-              loading: 'eager',
-              fetchpriority: 'high',
-              alt: '',
-              widths: '600,900',
-              sizes: '45vw' -}}
-
+              loading: 'eager', fetchpriority: 'high', alt: '',
+              widths: '600,900', sizes: '45vw' -}}
         </div>
       </div>
     </div>
@@ -154,32 +275,40 @@
   <div class="z-container relative z-10 w-full pb-16 pt-28 lg:py-0 lg:min-h-screen flex items-center">
     <div class="max-w-xl" data-fm="fade-up">
 
-      {%- comment -%} ── Animated product — mobile (above the text) ── {%- endcomment -%}
-      {%- if has_closed != blank -%}
-        <div class="lg:hidden" aria-hidden="true">
-          <div class="z-hero-product-mobile z-inhaler-float">
-            <div class="z-inhaler-stage">
-
-              {%- if has_open != blank -%}
-                {{- has_open | image_url: width: 500 | image_tag:
-                    class: 'z-inhaler-img z-inhaler-open drop-shadow-2xl',
-                    loading: 'eager',
-                    alt: '',
-                    widths: '300,500',
-                    sizes: '220px' -}}
-              {%- endif -%}
-
-              {{- has_closed | image_url: width: 500 | image_tag:
-                  class: 'z-inhaler-img z-inhaler-closed drop-shadow-2xl',
-                  loading: 'eager',
-                  alt: '',
-                  widths: '300,500',
-                  sizes: '220px' -}}
-
+      {%- comment -%} Mobile product visual ── {%- endcomment -%}
+      <div class="lg:hidden mb-8" aria-hidden="true">
+        {%- if use_mockup -%}
+          <div style="display:flex;justify-content:center">
+            <div class="z-product-mockup" style="width:200px;height:280px">
+              <div class="z-pm-nozzles">
+                <div class="z-pm-nozzle"></div>
+                <div class="z-pm-nozzle"></div>
+              </div>
+              <div class="z-pm-device" style="width:140px;border-radius:22px">
+                <div class="z-pm-label">
+                  <span class="z-pm-brand">Z!ngha™</span>
+                  <span class="z-pm-name">MANGO</span>
+                  <span class="z-pm-badge">Mint-Based<br>Fruit Energy</span>
+                  <span class="z-pm-sub">Aromatherapy on-the-go</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      {%- endif -%}
+        {%- else -%}
+          <div class="z-hero-product-mobile z-inhaler-float">
+            <div class="z-inhaler-stage">
+              {%- if img_open != blank -%}
+                {{- img_open | image_url: width: 500 | image_tag:
+                    class: 'z-inhaler-img z-inhaler-open drop-shadow-2xl',
+                    loading: 'eager', alt: '', widths: '300,500', sizes: '220px' -}}
+              {%- endif -%}
+              {{- img_closed | image_url: width: 500 | image_tag:
+                  class: 'z-inhaler-img z-inhaler-closed drop-shadow-2xl',
+                  loading: 'eager', alt: '', widths: '300,500', sizes: '220px' -}}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
 
       {%- if section.settings.label != blank -%}
         <p class="z-label mb-5">{{ section.settings.label }}</p>
@@ -191,8 +320,7 @@
         {%- if section.settings.headline != blank -%}
           {{ section.settings.headline }}
         {%- else -%}
-          Rituales de bienestar<br>
-          <em>en la palma de tu mano.</em>
+          Rituales de bienestar<br><em>en la palma de tu mano.</em>
         {%- endif -%}
       </h1>
 
@@ -206,8 +334,7 @@
            class="btn-primary">
           {{ section.settings.primary_cta_text | default: 'Descubrir la Colección' }}
         </a>
-        <a href="{{ section.settings.secondary_cta_url | default: '#rituales' }}"
-           class="btn-ghost">
+        <a href="{{ section.settings.secondary_cta_url | default: '#rituales' }}" class="btn-ghost">
           {{ section.settings.secondary_cta_text | default: '¿Qué es la aromaterapia?' }}
           <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
@@ -247,17 +374,21 @@
 {
   "name": "Z!ngha Hero",
   "settings": [
-    { "type": "image_picker", "id": "bg_image",              "label": "Imagen de fondo (lifestyle)" },
-    { "type": "image_picker", "id": "product_image_closed",  "label": "Inhalador cerrado (tapa puesta)" },
-    { "type": "image_picker", "id": "product_image_open",    "label": "Inhalador abierto (boquillas visibles)" },
-    { "type": "image_picker", "id": "product_image",         "label": "Imagen del producto (fallback, si no hay las anteriores)" },
-    { "type": "text",         "id": "label",                 "label": "Etiqueta superior",          "default": "Aromaterapia Premium" },
-    { "type": "textarea",     "id": "headline",              "label": "Titular (dejar vacío para usar el predeterminado)" },
-    { "type": "textarea",     "id": "subheadline",           "label": "Subtítulo",                  "default": "Aromaterapia clínica en un inhalador de diseño. 100% natural, efecto en menos de 60 segundos." },
-    { "type": "url",          "id": "primary_cta_url",       "label": "URL CTA principal" },
-    { "type": "text",         "id": "primary_cta_text",      "label": "Texto CTA principal",         "default": "Descubrir la Colección" },
-    { "type": "url",          "id": "secondary_cta_url",     "label": "URL CTA secundario" },
-    { "type": "text",         "id": "secondary_cta_text",    "label": "Texto CTA secundario",        "default": "¿Qué es la aromaterapia?" }
+    { "type": "header",       "content": "Imágenes del producto" },
+    { "type": "product",      "id": "featured_product",       "label": "Producto destacado (auto-carga sus imágenes)" },
+    { "type": "image_picker", "id": "product_image_closed",   "label": "Inhalador cerrado (tapa puesta)" },
+    { "type": "image_picker", "id": "product_image_open",     "label": "Inhalador abierto (boquillas visibles)" },
+    { "type": "image_picker", "id": "product_image",          "label": "Imagen del producto (fallback)" },
+    { "type": "header",       "content": "Fondo" },
+    { "type": "image_picker", "id": "bg_image",               "label": "Imagen de fondo (lifestyle)" },
+    { "type": "header",       "content": "Contenido" },
+    { "type": "text",         "id": "label",                  "label": "Etiqueta superior",    "default": "Aromaterapia Premium" },
+    { "type": "textarea",     "id": "headline",               "label": "Titular" },
+    { "type": "textarea",     "id": "subheadline",            "label": "Subtítulo",            "default": "Aromaterapia clínica en un inhalador de diseño. 100% natural, efecto en menos de 60 segundos." },
+    { "type": "url",          "id": "primary_cta_url",        "label": "URL CTA principal" },
+    { "type": "text",         "id": "primary_cta_text",       "label": "Texto CTA principal",  "default": "Descubrir la Colección" },
+    { "type": "url",          "id": "secondary_cta_url",      "label": "URL CTA secundario" },
+    { "type": "text",         "id": "secondary_cta_text",     "label": "Texto CTA secundario", "default": "¿Qué es la aromaterapia?" }
   ],
   "blocks": [
     {
@@ -272,9 +403,9 @@
     {
       "name": "Z!ngha Hero",
       "blocks": [
-        { "type": "trust_item", "settings": { "text": "Ingredientes naturales" } },
-        { "type": "trust_item", "settings": { "text": "Sin nicotina" } },
-        { "type": "trust_item", "settings": { "text": "Entrega en 3–5 días" } }
+        { "type": "trust_item", "settings": { "text": "Sin nicotina ni aditivos" } },
+        { "type": "trust_item", "settings": { "text": "Aceites esenciales 100% naturales" } },
+        { "type": "trust_item", "settings": { "text": "Envío gratis en pedidos +$499" } }
       ]
     }
   ]
